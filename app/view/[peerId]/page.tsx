@@ -28,7 +28,7 @@ export default function ViewSession() {
       conn.on('open', () => {
         setConnected(true)
         
-        conn.on('data', (data:any) => {
+        conn.on('data', (data: any) => {
             console.log("接收到data数据,不能接收数据流：" + JSON.stringify(data))
         })
       })

@@ -1,4 +1,5 @@
 export interface StreamData {
-    type: 'stream';
-    stream: any;
+    peerId: any
+    type: 'text' | 'stream'
+    content?: any
 };

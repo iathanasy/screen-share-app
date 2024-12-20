@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import Peer from 'peerjs';
+import { StreamData } from '@/app/types/StreamData';
 
 export function useScreenShare() {
   const [stream, setStream] = useState<MediaStream | null>(null);
@@ -24,7 +25,9 @@ export function useScreenShare() {
       newPeer.on('connection', (conn) => {
         conn.on('open', () => {
           setViewers((prev) => [...prev, conn.peer]);
-        //   conn.send({ peerId: peerId, type: 'stream', stream: mediaStream });
+          // 发送文本
+          const data: StreamData= { peerId: peerId, type: 'text', content: 'hello' }
+          conn.send(data);
             // 将本地媒体流发送给远程 Peer
             const call = newPeer.call(conn.peer, mediaStream);
             // 应答
